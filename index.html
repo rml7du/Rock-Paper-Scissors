@@ -7,7 +7,19 @@
 <body>
 
     <script>
-
+        function computerPlay(){
+            let rps = Math.floor(Math.random()*3);
+            let play;
+            if (rps == 0) {
+                play = "rock";
+            } else if (rps == 1) {
+                play = "paper";
+            } else {
+                play = "scissors";
+            }
+            return play;
+        }
+        console.log(computerPlay());
     </script>
   
 </body>
