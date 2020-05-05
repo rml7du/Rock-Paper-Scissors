@@ -35,9 +35,21 @@
                 return "You Lose! " + computerSelection.substring(0,1).toUpperCase() + computerSelection.substring(1) + " beats " + playerSelection.substring(0,1).toUpperCase() + playerSelection.substring(1) + ".";
             }
         }
-        const playerSelection = 'rock';
-        const computerSelection = computerPlay();
-        console.log( playRound(playerSelection, computerSelection) );
+
+        function game(){
+            for (i=0; i<5; i++){
+                
+               const computerSelection = computerPlay();
+               const playerSelection = prompt("Rock, Paper, or Scissors", "Rock");
+                console.log( playRound(playerSelection, computerSelection) );
+            }
+        }
+  
+  
+        //const playerSelection = 'rock';
+        //const computerSelection = computerPlay();
+        game();
+        //console.log( playRound(playerSelection, computerSelection) );
     </script>
   
 </body>
