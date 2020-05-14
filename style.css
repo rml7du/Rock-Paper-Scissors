@@ -1,0 +1,27 @@
+
+.container {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+}
+
+.box {
+    border: black .5rem solid;
+    border-radius: .5rem;
+    margin: 1rem;
+    padding: 1rem .5rem;
+    width: 10rem;
+    background: grey;
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    text-shadow: 0 0 .5rem black;
+    transition: all .07s ease;
+}
+
+.box:hover {
+    background-color: blue;
+  }
+
