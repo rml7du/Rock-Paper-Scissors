@@ -1,15 +1,10 @@
-let playerScore=0;
-let computerScore=0;
+let playerScore = 0;
+let computerScore = 0;
 
 const outcome = document.querySelector('#outcome');
-const content = document.createElement('span');
 
-const player = document.querySelector('#player');
-const playerContent = document.createElement('span');
 
-const computer = document.querySelector('#computer');
-const computerContent = document.createElement('span');
-
+// Computer Selection Function
 function computerPlay(){
   let rps = Math.floor(Math.random()*3);
   let play;
@@ -23,49 +18,65 @@ function computerPlay(){
   return play;
 }
 
-
-function playRound(playerSelection, playerScore, computerScore){
+// playRound function to compare human vs comp play and display results.
+function playRound(playerSelection){
   const computerSelection = computerPlay();
   
   if (playerSelection == computerSelection){   
-        content.textContent = "Tie! Both played " + playerSelection.substring(0,1).toUpperCase() + 
+        outcome.textContent = "Tie! Both played " + playerSelection.substring(0,1).toUpperCase() + 
                playerSelection.substring(1);
-        outcome.appendChild(content);
       return;
   } else if ( 
       (playerSelection == 'rock' && computerSelection == "scissors") ||
       (playerSelection == 'paper' && computerSelection == "rock") ||
       (playerSelection == 'scissors' && computerSelection == "paper")) {
         
-        playerScore++;
-        content.textContent = "You Win! " + playerSelection.substring(0,1).toUpperCase() + playerSelection.substring(1) + 
+        outcome.textContent = "You Win! " + playerSelection.substring(0,1).toUpperCase() + playerSelection.substring(1) + 
                           " beats " + computerSelection.substring(0,1).toUpperCase() + computerSelection.substring(1) + ".";
-        outcome.appendChild(content);
-
-        playerContent.textContent = playerScore;
-        player.appendChild(playerContent);
-      return;
+        playerScore++;
+        updateScore();
+        checkWinner();
+      return ;
   } else {
-      content.textContent = "You Lose! " + computerSelection.substring(0,1).toUpperCase() + computerSelection.substring(1) + 
+      outcome.textContent = "You Lose! " + computerSelection.substring(0,1).toUpperCase() + computerSelection.substring(1) + 
               " beats " + playerSelection.substring(0,1).toUpperCase() + playerSelection.substring(1) + ".";
-      outcome.appendChild(content);
-    return computerScore++;
+      computerScore++;
+      updateScore();
+      checkWinner();
+    return;
   }
 }
 
+//updates score.
+const updateScore = () => {
+  const pScore = document.querySelector("#player");
+  const cScore = document.querySelector("#computer");
+  pScore.textContent = playerScore;
+  cScore.textContent = computerScore;
+  
+};
 
+
+function checkWinner(){
+  if (playerScore == 5){
+    outcome.textContent = "You Win " + playerScore + " to " + computerScore;
+    playerScore = 0;
+    computerScore = 0;
+      } else if (computerScore == 5){
+        outcome.textContent = "You Lose " + computerScore + " to " + playerScore;
+        playerScore = 0;
+        computerScore = 0;
+  } else return;
+}
 
 
       const buttons = document.querySelectorAll('button');
       buttons.forEach((button) => {
         button.addEventListener('click', (e) => { 
           playRound(button.id, playerScore, computerScore);
-        });
+        });      
       });
       
-      if (playerScore == 5) {
-        content.textContent = "You Win! " + playerScore + "to " + computerScore;
-        outcome.appendChild(content);
-      }
+    
       
       

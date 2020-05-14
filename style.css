@@ -30,9 +30,15 @@
       
   }
 
-  span {
+  p {
       font-weight: normal;
+      color: red;
      
+  }
+
+  .gameOver {
+
+    font-size: 50;
   }
       
 
